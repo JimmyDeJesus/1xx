@@ -113,7 +113,7 @@ section.color {
 #info-bar a:hover {
 	background-color: #0793e2;
 }
-#info-bar span.all-tutorials,  #info-bar span.back-to-tutorial {
+#info-bar span.all-tutorials, #info-bar span.back-to-tutorial {
 	display: block;
 	width: 50%;
 }
@@ -247,10 +247,10 @@ header.smaller nav a {
 #info-bar a {
 	display: block;
 }
-#info-bar span.all-tutorials,  #info-bar span.back-to-tutorial {
+#info-bar span.all-tutorials, #info-bar span.back-to-tutorial {
 	width: 100%;
 }
-#info-bar span.all-tutorials,  #info-bar span.back-to-tutorial {
+#info-bar span.all-tutorials, #info-bar span.back-to-tutorial {
 	float: none;
 	text-align: center;
 }
