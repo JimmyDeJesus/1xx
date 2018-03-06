@@ -34,7 +34,7 @@ function init() {
 					console.log(data.MenuName);
 					console.log(data.MenuLink);
 
-					$('nav').append('<a href= "' + data.MenuLink + '">' + data.menuname + '</a>');
+					$('nav').append('<a href= "' + data.MenuLink + '">' + data.MenuName + '</a>');
 				});
 
 			}
