@@ -52,14 +52,14 @@ function menuBuilder(obj) {
 			theMenu = theMenu + '<li><a href="#">' + item.MenuName + '</a>';
 
 			if (item.Menus.length > 0) {
-				menuBuilder(item.Menus);
+			 theMenu = theMenu + menuBuilder(item.Menus);	
 			}
 
 			theMenu = theMenu + '</li>';
 
 		});
 
-		theMenu = theMenu + '/<ul>';
+		theMenu = theMenu + '</ul>';
 
 	} else {
 
