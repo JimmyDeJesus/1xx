@@ -178,6 +178,8 @@ header nav a:hover {
 }
 header.smaller {
 	height: 75px;
+	
+	
 }
 header.smaller h1#logo {
 	width: 150px;
@@ -186,7 +188,9 @@ header.smaller h1#logo {
 	font-size: 30px;
 }
 header.smaller nav a {
-	line-height: 75px;
+	/*line-height: 75px;
+	*/
+	line-height: 32px;
 }
 /* =Footer
 -------------------------------------------------------------- */
