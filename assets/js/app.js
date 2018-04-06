@@ -20,7 +20,7 @@ function init() {
 	});
 	$.ajax({
 		method: 'GET',
-		url: 'http://me.jd09524.com/wp-json/wp-api-menus/v2/menus/2',
+		url: 'https://me.jd09524.com/wp-json/wp-api-menus/v2/menus/2',
 		dataType: 'json',
 		success: function (data) {
 			$('nav').hide();
@@ -60,7 +60,7 @@ function getPage(obj) {
 	$("#loaderDiv").fadeIn("slow");
 	$.ajax({
 		method: 'GET',
-		url: 'http://me.jd09524.com/wp-json/wp/v2/pages/' + obj,
+		url: 'https://me.jd09524.com/wp-json/wp/v2/pages/' + obj,
 		dataType: 'json',
 		success: function (data) {
 			var pgbuild = '';
