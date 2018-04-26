@@ -18,6 +18,7 @@ function init() {
 			}
 		}
 	});
+
 	$.ajax({
 		method: 'GET',
 		url: 'https://me.jd09524.com/wp-json/wp-api-menus/v2/menus/2',
@@ -36,12 +37,45 @@ function init() {
 			console.log('all is not good');
 		}
 	});
+
+	$.ajax({
+		method: 'GET',
+		url: 'https://me.jd09524.com/wp-json/wp-api-menus/v2/menus/3',
+		dataType: 'json',
+		success: function (data) {
+			var menu = menuBuilder(data.items, 'genLinks', 'footer-ul');
+			$('#genLinks').replaceWith(menu);
+			$('#genLinks li a').click(function () {
+				getPage($(this).data("pgid"));
+			});
+
+
+		},
+		error: function () {
+			console.log('all is not good');
+		}
+	});
+	getPosts();
 }
 
-function menuBuilder(obj) {
+function menuBuilder(obj, elID, elClassName) {
+
 	var theMenu = '';
+	//*let hasID = (elID !== undefined)?' ID="'+elID+'"':'';
+
+	//*let hasClass = (elCls !== undefined)?' class="'+elCls+'"':'';
+
+
 	if (obj) {
-		theMenu = theMenu + '<ul>';
+		//console.log(elClassName)
+		var inElId = (elID !== undefined) ? ' id="' + elID + '"' : '';
+
+		var inLineClass = '';
+		if (elClassName !== undefined) {
+			inLineClass = ' class="' + elClassName + '"';
+
+		}
+		theMenu = theMenu + '<ul' + inElId + '' + inLineClass + '>';
 		obj.forEach(function (item) {
 			theMenu = theMenu + '<li><a href="#" data-pgid="' + item.object_id + '">' + item.title + '</a>';
 			if (item.children) {
@@ -54,6 +88,7 @@ function menuBuilder(obj) {
 		console.log('no data')
 	}
 	return theMenu;
+
 }
 
 function getPage(obj) {
@@ -74,6 +109,40 @@ function getPage(obj) {
 				}, 'slow'); //chrome, don't know if Safari works
 				$(this).html(pgbuild).fadeIn();
 				$("#loaderDiv").fadeOut("slow");
+			});
+		},
+		error: function () {
+			console.log('bad');
+		}
+	});
+}
+
+function getPosts() {
+	$("#footerPosts").html('<p id="postLdr"><i class="fa fa-cogs"></i> Loading Posts</p>');
+	$.ajax({
+		method: 'GET',
+		url: 'http://me.jd09524.com/wp-json/wp/v2/posts?orderby=date&order=asc&per_page=5',
+		dataType: 'json',
+		success: function (data) {
+			console.log('inside success');
+			console.log(data);
+			$("#footerPosts").html('');
+			data.forEach(function (item) {
+				$("#footerPosts").append('<p>'+ item.title.rendered + item.date + item.time + ' <span>August 3,2015</span></p>');
+
+				/*
+				var myDate = new Date(item.date);
+		
+				$("#latestPosts").prepend('<p>' + item.title.rendered + '<span>' + myDate.getMonth() + '-' + myDate.getDay() + '-' + myDate.getFullYear() + '</span></p>');
+				
+		
+					});
+					$("#postLdr").remove();	
+					*/
+				console.log('up yours');
+				console.log(item);
+				console.log(item.slug + ' - ' + item.date + ' - ' + item.title.rendered);
+				console.log('mine?');
 			});
 		},
 		error: function () {
