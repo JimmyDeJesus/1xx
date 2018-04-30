@@ -63,3 +63,17 @@ inside out project version 105.0
           - added the getPage function to capture link clicks and get page content
           - added getPage function call to the ajax call for the menus on page load to get the homepage
           - modified the forEach loop in the menuBuilder to include the page id as a data attribute	
+
+inside out project version 106.0
+
+	me WP Site Changes
+	- add the pages for the links in the general links in the footer 
+		-contact us, frequently ask questions, terms & conditions, privacy policy
+	
+	insside out App site changes
+	-index.html
+		-add id="genLinks" to the ul in the "General Links" section in the footer
+	-app.js
+		-add ajax call to gret the general links menu
+		-add variables to the menubuilder function to accepet id and class information
+		
