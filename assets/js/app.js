@@ -38,10 +38,45 @@ function init() {
 	});
 }
 
-function menuBuilder(obj) {
+$.ajax({
+		method: 'GET',
+		url: 'https://me.jd09524.com/wp-json/wp-api-menus/v2/menus/3',
+		dataType: 'json',
+		success: function (data) {
+			var menu = menuBuilder(data.items, 'genLinks', 'footer-ul');
+			$('#genLinks').replaceWith(menu);
+			$('#genLinks li a').click(function () {
+					getPage($(this).data("pgid"));
+			});
+			
+			
+		},
+		error: function () {
+			console.log('all is not good');
+		}
+	});
+	
+
+
+
+function menuBuilder(obj, elID, elClassName) {
+	
 	var theMenu = '';
+	//*let hasID = (elID !== undefined)?' ID="'+elID+'"':'';
+	
+	//*let hasClass = (elCls !== undefined)?' class="'+elCls+'"':'';
+	
+	
 	if (obj) {
-		theMenu = theMenu + '<ul>';
+		
+		var inElId = (elID !== undefined)?' id="'+elID+'"':'';
+		
+		var inLineClass = '';
+		if(elClassName !== undefined){
+				inLineClass = ' class="'+elClassName+'"';
+			
+		}
+		theMenu = theMenu + '<ul'+inElId+''+inLineClass+'>';
 		obj.forEach(function (item) {
 			theMenu = theMenu + '<li><a href="#" data-pgid="' + item.object_id + '">' + item.title + '</a>';
 			if (item.children) {
@@ -54,6 +89,7 @@ function menuBuilder(obj) {
 		console.log('no data')
 	}
 	return theMenu;
+	
 }
 
 function getPage(obj) {
